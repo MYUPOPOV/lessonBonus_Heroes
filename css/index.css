@@ -1,3 +1,28 @@
 html {
 	font-size: 25px;
+	font-family: Roboto, sans-serif;
+}
+
+body {
+	/* text-align: center; */
+}
+
+.column {
+	float: left;
+	width: 50%;
+}
+
+/* Clear floats after the columns */
+.row:after {
+	content: '';
+	display: table;
+	clear: both;
+}
+
+.card {
+	height: 200px;
+	border: 2px;
+}
+.photo {
+	height: 200px;
 }
