@@ -1,67 +1,112 @@
-console.log('Скрипт подключен');
+// console.log('Скрипт подключен');
 
-/* const columnName = document.querySelectorAll('.column-name');
+const allCards = document.querySelector('.all-cards');
+console.log('~ allCards', allCards);
 
-const getData = (currentElementsId, order) => {
-	fetch('db/db.json')
+const getData = () => {
+	fetch('dbHeroes.json')
 		.then((res) => res.json())
 		.then((data) => {
 			const array = [];
 			// console.log(currentElementsId);
-			for (let keyId of currentElementsId) {
-				for (let keyDataDb of data.db) {
-					if (keyDataDb.id === keyId) {
-						array.push(keyDataDb);
-					}
-				}
-			}
-			if (order === 'current') {
-				renderCurrentElements(array);
-				// console.log(array);
-			}
-			if (order === 'next') {
-				renderNextElements(array);
-			}
+			// for (let keyId of currentElementsId) {
+			// 	for (let keyDataDb of data.db) {
+			// 		if (keyDataDb.id === keyId) {
+			// 			array.push(keyDataDb);
+
+			data.forEach((item) => {
+				array.push(item);
+			});
+
+			console.log(array);
+			renderCards(array);
+
+			// renderCards(array);
+
 			// localStorage.setItem("goods", JSON.stringify(array)); // Записываем в localStorage
 			// window.location.href = "/goods.html"; // Переходим на страницу для отображения товаров
 			// renderGoods(array); // Рендерим товары
 		});
 };
 
-const renderCurrentElements = (array) => {
-	const currentColumn = document.querySelector('.current-column > .element-column');
-	array.forEach(({ id, elementName, nextElements }) => {
-		const element = document.createElement('div');
-		element.classList.add('current-element');
+const renderCards = (array) => {
+	allCards.innerHTML = '';
+	// const currentColumn = document.querySelector('.current-column > .element-column');
+	array.forEach(({ name, realName, species, citizenship, gender, status, actors, photo, movies }) => {
+		const card = document.createElement('div');
+		card.classList.add('card');
 
-		let btnClass, colorMain, colorEnter;
-		if (id.substring(3) === '01') {
-			btnClass = 'current-element-btn';
-			colorMain = '#A0DCBE';
-			colorEnter = '#6edfa6';
-		} else {
-			btnClass = 'current-element-variant-btn';
-			colorMain = '#FAFABE';
-			colorEnter = '#f5f591';
-		}
-		element.innerHTML = `<button class=${btnClass}>${elementName}</button>`;
-		element.querySelector(`.${btnClass}`).addEventListener('click', () => showCurrentElement(elementName, id));
-		btnMouseEnterLeave.bind(element)(btnClass, colorMain, colorEnter);
-		currentColumn.append(element);
+		card.innerHTML = `
+    <div class="picture">
+      <img class='photo' src=${photo}></img>
+    </div>
+ 
+    <div class="row">
 
-		if (id.substring(3) === '01') {
-			getChildren(id);
-		}
-		if (nextElements) {
-			getData(nextElements, 'next');
-		}
+    <div class="column info"> 
+      <div class='name'>
+        <span class='info-title'>name</span>
+        </div>
+      <div class='realName'>
+        <span class='info-title'>realName</span>
+        </div>
+      <div class='species'>
+        <span class='info-title'>species</span>
+      </div>
+      <div class='citizenship'>
+        <span class='info-title'>citizenship</span>
+      </div>
+      <div class='gender'>
+        <span class='info-title'>gender</span>
+      </div>
+      <div class='status'>
+        <span class='info-title'>status</span>
+      </div>
+      <div class='actors'>
+        <span class='info-title'>actors</span>
+      </div>
+      <div class='movies'>
+        <span class='info-title'>movies</span>
+     </div>
+    </div>
+ 
+      <div class="column data"> 
+        <div class='name'>
+          <span class='info-value'><b>${name}</b></span>
+          </div>
+        <div class='realName'>
+          <span class='info-value'>${realName}</span>
+          </div>
+        <div class='species'>
+          <span class='info-value'>${species}</span>
+        </div>
+        <div class='citizenship'>
+          <span class='info-value'>${citizenship}</span>
+        </div>
+        <div class='gender'>
+          <span class='info-value'>${gender}</span>
+        </div>
+        <div class='status'>
+          <span class='info-value'>${status}</span>
+        </div>
+        <div class='actors'>
+          <span class='info-value'>${actors}</span>
+        </div>
+        <div class='movies'>
+          <span class='info-value'><b>
+          ${movies}
+          </b></span>
+       </div>
+      </div>
+      </div>
+    `;
+		allCards.append(card);
 	});
 };
 
-const restart = () => {
-	clearColumns();
-	showCurrentElement('Базовый шаг', '01001');
-	getData(['01001'], 'current');
+const start = () => {
+	getData();
+	// allCards.innerHTML = '';
 };
 
-restart(); */
+start();

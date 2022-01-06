@@ -1,6 +1,7 @@
 html {
 	font-size: 25px;
 	font-family: Roboto, sans-serif;
+	/* border-collapse: collapse; */
 }
 
 body {
@@ -9,7 +10,10 @@ body {
 
 .column {
 	float: left;
-	width: 50%;
+	width: 25%;
+	height: 280px;
+	/* background-color: rgb(201, 201, 201); */
+	/* border: solid 1px; */
 }
 
 /* Clear floats after the columns */
@@ -17,12 +21,41 @@ body {
 	content: '';
 	display: table;
 	clear: both;
+	padding: 20px;
 }
 
 .card {
-	height: 200px;
-	border: 2px;
+	/* margin: 5px; */
+	/* height: 200px; */
+	/* border: solid 2px; */
 }
+
 .photo {
-	height: 200px;
+	height: 320px;
+	border-radius: 5px;
+	/* width: 20%; */
+	/* position: absolute; */
+	float: left;
+	/* padding-top: 20px; */
+}
+.info {
+	border-radius: 5px;
+	width: auto;
+	/* height: 280; */
+	/* border: 2px; */
+	/* background-color: green; */
+	border-collapse: collapse;
+	border: solid 1px;
+	/* padding-left: 30px; */
+	padding: 20px;
+	margin-left: 5px;
+}
+
+.data {
+	width: 70%;
+	/* height: 280; */
+	border-radius: 5px;
+	border: solid 1px;
+	padding: 20px;
+	margin-left: 5px;
 }
