@@ -2,8 +2,56 @@
 
 const allCards = document.querySelector('.all-cards');
 const selectMovies = document.querySelector('.select-movies');
+const selectSort = document.querySelector('.sort');
+const sortResult = document.querySelector('.sort-result');
 
-const getData = (movie = 'All Movies') => {
+const getSortData = (parameter, movie) => {
+	console.log('~ parameter', parameter);
+
+	fetch('dbHeroes.json')
+		.then((res) => res.json())
+		.then((data) => {
+			const array = [];
+			if (movie === 'All Movies') {
+				data.forEach((item) => {
+					array.push(item);
+				});
+			} else {
+				data.forEach((item) => {
+					if (item.movies.find((item) => item === movie)) {
+						array.push(item);
+					}
+				});
+			}
+
+			console.log('~ array', array);
+
+			const sortedArray = [];
+
+			if (parameter !== 'Sort') {
+				array.forEach((item) => {
+					if (!sortedArray.find((itemArray) => itemArray === item[parameter])) {
+						sortedArray.push(item[parameter]);
+					}
+				});
+				renderSortButtons(sortedArray);
+			}
+			// console.log('~ array', array);
+			// if (movie === 'All Movies') {
+			//   data.forEach((item) => {
+			//     array.push(item);
+			//   });
+			// } else {
+			//   data.forEach((item) => {
+			//     if (item.movies.find((item) => item === movie)) {
+			//       array.push(item);
+			//     }
+			//   });
+			// }
+		});
+};
+
+const getRenderData = (movie = 'All Movies') => {
 	fetch('dbHeroes.json')
 		.then((res) => res.json())
 		.then((data) => {
@@ -21,6 +69,22 @@ const getData = (movie = 'All Movies') => {
 			}
 			renderCards(array);
 		});
+};
+
+const renderSortButtons = (array) => {
+	sortResult.innerHTML = '';
+	array.forEach((item) => {
+		const buttonSort = document.createElement('button');
+		buttonSort.classList.add('button-sort');
+		buttonSort.textContent = `${item}`;
+
+		buttonSort.addEventListener('click', (e) => {
+			console.log(e.target);
+			// передаем значение Movie Sort и Text.Content кнопки и находим в json необходимую карточку
+		});
+
+		sortResult.append(buttonSort);
+	});
 };
 
 const renderCards = (array) => {
@@ -60,11 +124,23 @@ const renderCards = (array) => {
 };
 
 const start = () => {
-	getData(selectMovies.value);
+	getRenderData(selectMovies.value);
+	sortResult.style.display = 'none';
 };
 
 selectMovies.addEventListener('change', () => {
-	getData(selectMovies.value);
+	selectSort.value = 'Sort';
+	getRenderData(selectMovies.value);
+	sortResult.style.display = 'none';
+});
+
+selectSort.addEventListener('change', () => {
+	if (selectSort.value !== 'Sort') {
+		sortResult.style.display = 'block';
+		getSortData(selectSort.value, selectMovies.value);
+	} else {
+		sortResult.style.display = 'none';
+	}
 });
 
 start();

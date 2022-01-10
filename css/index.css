@@ -2,6 +2,11 @@ html {
 	font-size: 25px;
 	font-family: Roboto, sans-serif;
 }
+@media (max-width: 1200px) {
+	html {
+		font-size: 18px;
+	}
+}
 body {
 	background-image: url('../img/edit/background.jpg');
 	background-size: 100%;
@@ -11,12 +16,76 @@ body {
 	width: 95%;
 	font-size: 25px;
 	border-radius: 5px;
-	margin-bottom: 20px;
+	margin-top: 10px;
+	margin-bottom: 5px;
 	text-align: center;
 	font-weight: bold;
 	border: solid 1px;
 	background-color: hsla(0, 0%, 100%, 0.85);
 }
+
+.sort-block {
+}
+
+.sort {
+	height: 54px;
+	width: 20%;
+	font-size: 25px;
+	border-radius: 5px;
+	margin-bottom: 10px;
+	text-align: center;
+	font-weight: bold;
+	border: solid 1px;
+	background-color: hsla(0, 0%, 100%, 0.85);
+}
+
+.input {
+	height: 50px;
+	width: 64%;
+	font-size: 25px;
+	border-radius: 5px;
+	/* margin-bottom: 20px; */
+	text-align: center;
+	font-weight: bold;
+	border: solid 1px;
+	background-color: hsla(0, 0%, 100%, 0.85);
+}
+
+.button-search {
+	height: 54px;
+	width: 10%;
+	font-size: 25px;
+	border-radius: 5px;
+	/* margin-bottom: 5px; */
+	text-align: center;
+	font-weight: bold;
+	border: solid 1px;
+	background-color: hsla(0, 0%, 100%, 0.85);
+}
+
+.sort-result {
+	border-radius: 5px;
+	width: 94.5%;
+	border: solid 1px;
+	margin-bottom: 10px;
+	padding: 5px;
+	padding-top: 10px;
+	background-color: hsla(0, 0%, 100%, 0.85);
+}
+
+.button-sort {
+	height: 36px;
+	width: auto;
+	font-size: 18px;
+	border-radius: 5px;
+	margin-right: 5px;
+	margin-bottom: 5px;
+	text-align: center;
+	/* font-weight: bold; */
+	border: solid 1px;
+	background-color: hsla(0, 0%, 100%, 0.85);
+}
+
 .column {
 	float: left;
 	height: 280px;
@@ -26,6 +95,7 @@ body {
 	display: table;
 	clear: both;
 	padding: 20px;
+	/* margin-top: 20px; */
 }
 .photo {
 	height: 320px;
