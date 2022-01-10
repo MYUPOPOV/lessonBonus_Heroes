@@ -8,7 +8,6 @@ const getData = (movie = 'All Movies') => {
 		.then((res) => res.json())
 		.then((data) => {
 			const array = [];
-			console.log('~ movie', movie);
 			// console.log(currentElementsId);
 			// for (let keyId of currentElementsId) {
 			// 	for (let keyDataDb of data.db) {
@@ -17,14 +16,10 @@ const getData = (movie = 'All Movies') => {
 
 			if (movie === 'All Movies') {
 				data.forEach((item) => {
-					// item.movies
-					// console.log('~ item.movies', item.movies);
 					array.push(item);
 				});
 			} else {
 				data.forEach((item) => {
-					// console.log(item.movies);
-					// array.push(item);
 					if (item.movies) {
 						if (item.movies.find((item) => item === movie)) {
 							array.push(item);
@@ -32,14 +27,12 @@ const getData = (movie = 'All Movies') => {
 					}
 				});
 			}
-			// console.log(array);
 			renderCards(array);
 		});
 };
 
 const renderCards = (array) => {
 	allCards.innerHTML = '';
-	// const currentColumn = document.querySelector('.current-column > .element-column');
 	array.forEach(({ name, realName, species, citizenship, gender, status, actors, photo, movies }) => {
 		const card = document.createElement('div');
 		card.classList.add('card');
