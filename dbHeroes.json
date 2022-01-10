@@ -108,7 +108,9 @@
     "gender": "male",
     "status": "alive",
     "actors": "Charlie Cox",
-    "photo": "dbimage/Daredevil_S3_Textless_Poster03.jpg"
+    "photo": "dbimage/Daredevil_S3_Textless_Poster03.jpg",
+    "movies": ["Daredevil"]
+
   },
   {
     "name": "Doctor Strange",
@@ -133,7 +135,13 @@
     "gender": "male",
     "status": "alive",
     "actors": "Dave Bautista",
-    "photo": "dbimage/Drax_AIW_Profile.jpg"
+    "photo": "dbimage/Drax_AIW_Profile.jpg",
+    "movies": [
+      "Guardians of the Galaxy",
+      "Guardians of the Galaxy Vol. 2",
+      "Avengers: Infinity War",
+      "Avengers: Endgame"
+    ]
   },
   {
     "name": "Dum Dum Dugan",

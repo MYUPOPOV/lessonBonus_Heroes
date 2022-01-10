@@ -1,31 +1,39 @@
 // console.log('Скрипт подключен');
 
 const allCards = document.querySelector('.all-cards');
-console.log('~ allCards', allCards);
+const selectMovies = document.querySelector('.select-movies');
 
-const getData = () => {
+const getData = (movie = 'All Movies') => {
 	fetch('dbHeroes.json')
 		.then((res) => res.json())
 		.then((data) => {
 			const array = [];
+			console.log('~ movie', movie);
 			// console.log(currentElementsId);
 			// for (let keyId of currentElementsId) {
 			// 	for (let keyDataDb of data.db) {
 			// 		if (keyDataDb.id === keyId) {
 			// 			array.push(keyDataDb);
 
-			data.forEach((item) => {
-				array.push(item);
-			});
-
-			console.log(array);
+			if (movie === 'All Movies') {
+				data.forEach((item) => {
+					// item.movies
+					// console.log('~ item.movies', item.movies);
+					array.push(item);
+				});
+			} else {
+				data.forEach((item) => {
+					// console.log(item.movies);
+					// array.push(item);
+					if (item.movies) {
+						if (item.movies.find((item) => item === movie)) {
+							array.push(item);
+						}
+					}
+				});
+			}
+			// console.log(array);
 			renderCards(array);
-
-			// renderCards(array);
-
-			// localStorage.setItem("goods", JSON.stringify(array)); // Записываем в localStorage
-			// window.location.href = "/goods.html"; // Переходим на страницу для отображения товаров
-			// renderGoods(array); // Рендерим товары
 		});
 };
 
@@ -105,8 +113,11 @@ const renderCards = (array) => {
 };
 
 const start = () => {
-	getData();
-	// allCards.innerHTML = '';
+	getData(selectMovies.value);
 };
+
+selectMovies.addEventListener('change', () => {
+	getData(selectMovies.value);
+});
 
 start();

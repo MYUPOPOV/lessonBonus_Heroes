@@ -6,6 +6,21 @@ html {
 
 body {
 	/* text-align: center; */
+	background-image: url('../img/edit/background.jpg');
+	background-size: 100%;
+}
+
+.select-movies {
+	height: 50px;
+	width: 95%;
+	font-size: 25px;
+	font-family: Roboto, sans-serif;
+	border-radius: 5px;
+	margin-bottom: 20px;
+	text-align: center;
+	font-weight: bold;
+	border: solid 1px;
+	background-color: hsla(0, 0%, 100%, 0.85);
 }
 
 .column {
@@ -32,10 +47,12 @@ body {
 
 .photo {
 	height: 320px;
+	/* width: 15%; */
 	border-radius: 5px;
 	/* width: 20%; */
 	/* position: absolute; */
 	float: left;
+	border: solid 1px;
 	/* padding-top: 20px; */
 }
 .info {
@@ -49,13 +66,15 @@ body {
 	/* padding-left: 30px; */
 	padding: 20px;
 	margin-left: 5px;
+	background-color: hsla(0, 0%, 100%, 0.85);
 }
 
 .data {
-	width: 70%;
+	width: 75%;
 	/* height: 280; */
 	border-radius: 5px;
 	border: solid 1px;
 	padding: 20px;
 	margin-left: 5px;
+	background-color: hsla(0, 0%, 100%, 0.85);
 }
