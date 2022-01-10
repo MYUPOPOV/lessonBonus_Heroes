@@ -1,20 +1,15 @@
 html {
 	font-size: 25px;
 	font-family: Roboto, sans-serif;
-	/* border-collapse: collapse; */
 }
-
 body {
-	/* text-align: center; */
 	background-image: url('../img/edit/background.jpg');
 	background-size: 100%;
 }
-
 .select-movies {
 	height: 50px;
 	width: 95%;
 	font-size: 25px;
-	font-family: Roboto, sans-serif;
 	border-radius: 5px;
 	margin-bottom: 20px;
 	text-align: center;
@@ -22,56 +17,32 @@ body {
 	border: solid 1px;
 	background-color: hsla(0, 0%, 100%, 0.85);
 }
-
 .column {
 	float: left;
-	width: 25%;
 	height: 280px;
-	/* background-color: rgb(201, 201, 201); */
-	/* border: solid 1px; */
 }
-
-/* Clear floats after the columns */
 .row:after {
 	content: '';
 	display: table;
 	clear: both;
 	padding: 20px;
 }
-
-.card {
-	/* margin: 5px; */
-	/* height: 200px; */
-	/* border: solid 2px; */
-}
-
 .photo {
 	height: 320px;
-	/* width: 15%; */
 	border-radius: 5px;
-	/* width: 20%; */
-	/* position: absolute; */
 	float: left;
 	border: solid 1px;
-	/* padding-top: 20px; */
 }
 .info {
 	border-radius: 5px;
 	width: auto;
-	/* height: 280; */
-	/* border: 2px; */
-	/* background-color: green; */
-	border-collapse: collapse;
 	border: solid 1px;
-	/* padding-left: 30px; */
 	padding: 20px;
 	margin-left: 5px;
 	background-color: hsla(0, 0%, 100%, 0.85);
 }
-
 .data {
 	width: 75%;
-	/* height: 280; */
 	border-radius: 5px;
 	border: solid 1px;
 	padding: 20px;
