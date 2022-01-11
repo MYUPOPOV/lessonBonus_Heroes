@@ -20,7 +20,7 @@ const enableSortBlock = () => {
 	searchBtn.removeAttribute('disabled');
 };
 
-const getSortData = (movie, sort) => {
+const getSortData = (movie = 'All Movies', sort = 'Sort') => {
 	fetch('dbHeroes.json')
 		.then((res) => res.json())
 		.then((data) => {
