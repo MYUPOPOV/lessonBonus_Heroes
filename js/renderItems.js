@@ -48,7 +48,7 @@ const getSortData = (movie, sort) => {
 		});
 };
 
-const getRenderData = (movie = 'All Movies', sort = 'Sort', value = 'unknown') => {
+const getRenderData = (movie = 'All Movies', sort = 'Sort', value = ['undefined']) => {
 	fetch('dbHeroes.json')
 		.then((res) => res.json())
 		.then((data) => {
@@ -66,9 +66,17 @@ const getRenderData = (movie = 'All Movies', sort = 'Sort', value = 'unknown') =
 			}
 			let sortedArray = [];
 			if (sort !== 'Sort') {
-				// Для каждого элемента массива value при совпадении запушить в sortArray
-				sortedArray = array.filter((item) => item[sort] === value);
+				for (let key of value) {
+					array.forEach((item) => {
+						if (item[sort] === key) {
+							sortedArray.push(item);
+						}
+					});
+				}
 			} else {
+				// Для каждого элемента массива value при совпадении запушить в sortArray
+				// sortedArray = array.filter((item) => item[sort] === value);
+
 				sortedArray = array;
 			}
 			renderCards(sortedArray);
@@ -83,7 +91,7 @@ const renderSortButtons = (array) => {
 		buttonSort.textContent = `${item}`;
 
 		buttonSort.addEventListener('click', (e) => {
-			getRenderData(selectMovies.value, selectSort.value, e.target.textContent);
+			getRenderData(selectMovies.value, selectSort.value, [e.target.textContent]);
 		});
 
 		buttonSort.addEventListener('mouseenter', (event) => {
@@ -183,16 +191,19 @@ searchBtn.addEventListener('click', () => {
 		}
 	});
 	console.log('~ array', array);
+	getRenderData(selectMovies.value, selectSort.value, array);
 });
 
 [selectMovies, selectSort, input, searchBtn].forEach((item) =>
 	item.addEventListener('mouseenter', (event) => {
 		event.target.style.backgroundColor = 'rgba(255, 255, 255, 0.97)';
+		event.target.style.border = 'solid 2px';
 	})
 );
 [selectMovies, selectSort, input, searchBtn].forEach((item) =>
 	item.addEventListener('mouseleave', (event) => {
 		event.target.style.backgroundColor = 'rgba(255, 255, 255, 0.85)';
+		event.target.style.border = 'solid 1px';
 	})
 );
 
