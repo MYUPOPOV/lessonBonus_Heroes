@@ -24,9 +24,6 @@ body {
 	background-color: hsla(0, 0%, 100%, 0.85);
 }
 
-.sort-block {
-}
-
 .sort {
 	height: 54px;
 	width: 20%;
@@ -76,7 +73,7 @@ body {
 .button-sort {
 	height: 36px;
 	width: auto;
-	font-size: 18px;
+	font-size: 22px;
 	border-radius: 5px;
 	margin-right: 5px;
 	margin-bottom: 5px;

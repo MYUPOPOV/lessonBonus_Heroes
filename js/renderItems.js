@@ -5,9 +5,7 @@ const selectMovies = document.querySelector('.select-movies');
 const selectSort = document.querySelector('.sort');
 const sortResult = document.querySelector('.sort-result');
 
-const getSortData = (parameter, movie) => {
-	console.log('~ parameter', parameter);
-
+const getSortData = (movie, sort) => {
 	fetch('dbHeroes.json')
 		.then((res) => res.json())
 		.then((data) => {
@@ -23,35 +21,19 @@ const getSortData = (parameter, movie) => {
 					}
 				});
 			}
-
-			console.log('~ array', array);
-
 			const sortedArray = [];
-
-			if (parameter !== 'Sort') {
+			if (sort !== 'Sort') {
 				array.forEach((item) => {
-					if (!sortedArray.find((itemArray) => itemArray === item[parameter])) {
-						sortedArray.push(item[parameter]);
+					if (!sortedArray.find((itemArray) => itemArray === item[sort])) {
+						sortedArray.push(item[sort]);
 					}
 				});
 				renderSortButtons(sortedArray);
 			}
-			// console.log('~ array', array);
-			// if (movie === 'All Movies') {
-			//   data.forEach((item) => {
-			//     array.push(item);
-			//   });
-			// } else {
-			//   data.forEach((item) => {
-			//     if (item.movies.find((item) => item === movie)) {
-			//       array.push(item);
-			//     }
-			//   });
-			// }
 		});
 };
 
-const getRenderData = (movie = 'All Movies') => {
+const getRenderData = (movie = 'All Movies', sort = 'Sort', value = 'unknown') => {
 	fetch('dbHeroes.json')
 		.then((res) => res.json())
 		.then((data) => {
@@ -67,7 +49,13 @@ const getRenderData = (movie = 'All Movies') => {
 					}
 				});
 			}
-			renderCards(array);
+			let sortedArray = [];
+			if (sort !== 'Sort') {
+				sortedArray = array.filter((item) => item[sort] === value);
+			} else {
+				sortedArray = array;
+			}
+			renderCards(sortedArray);
 		});
 };
 
@@ -80,7 +68,7 @@ const renderSortButtons = (array) => {
 
 		buttonSort.addEventListener('click', (e) => {
 			console.log(e.target);
-			// передаем значение Movie Sort и Text.Content кнопки и находим в json необходимую карточку
+			getRenderData(selectMovies.value, selectSort.value, e.target.textContent);
 		});
 
 		sortResult.append(buttonSort);
@@ -124,22 +112,24 @@ const renderCards = (array) => {
 };
 
 const start = () => {
-	getRenderData(selectMovies.value);
+	getRenderData();
 	sortResult.style.display = 'none';
 };
 
 selectMovies.addEventListener('change', () => {
-	selectSort.value = 'Sort';
 	getRenderData(selectMovies.value);
+	selectSort.value = 'Sort';
 	sortResult.style.display = 'none';
 });
 
 selectSort.addEventListener('change', () => {
 	if (selectSort.value !== 'Sort') {
 		sortResult.style.display = 'block';
-		getSortData(selectSort.value, selectMovies.value);
+		getSortData(selectMovies.value, selectSort.value);
+		getRenderData(selectMovies.value);
 	} else {
 		sortResult.style.display = 'none';
+		getRenderData(selectMovies.value);
 	}
 });
 
