@@ -74,9 +74,6 @@ const getRenderData = (movie = 'All Movies', sort = 'Sort', value = ['undefined'
 					});
 				}
 			} else {
-				// Для каждого элемента массива value при совпадении запушить в sortArray
-				// sortedArray = array.filter((item) => item[sort] === value);
-
 				sortedArray = array;
 			}
 			renderCards(sortedArray);
@@ -96,7 +93,7 @@ const renderSortButtons = (array) => {
 
 		buttonSort.addEventListener('mouseenter', (event) => {
 			event.target.style.backgroundColor = 'rgba(250, 250, 250, 0.97)';
-			event.target.style.border = 'solid 2px';
+			event.target.style.border = 'solid 3px';
 		});
 
 		buttonSort.addEventListener('mouseleave', (event) => {
@@ -197,7 +194,7 @@ searchBtn.addEventListener('click', () => {
 [selectMovies, selectSort, input, searchBtn].forEach((item) =>
 	item.addEventListener('mouseenter', (event) => {
 		event.target.style.backgroundColor = 'rgba(255, 255, 255, 0.97)';
-		event.target.style.border = 'solid 2px';
+		event.target.style.border = 'solid 3px';
 	})
 );
 [selectMovies, selectSort, input, searchBtn].forEach((item) =>

@@ -96,20 +96,21 @@ body {
 }
 .photo {
 	height: 320px;
+	width: 11%;
 	border-radius: 5px;
 	float: left;
 	border: solid 1px;
 }
 .info {
 	border-radius: 5px;
-	width: auto;
+	width: 6%;
 	border: solid 1px;
 	padding: 20px;
 	margin-left: 5px;
 	background-color: hsla(0, 0%, 100%, 0.85);
 }
 .data {
-	width: 60%;
+	width: 74%;
 	/* overflow: hidden; */
 	border-radius: 5px;
 	border: solid 1px;
