@@ -67,7 +67,7 @@ body {
 	margin-bottom: 10px;
 	padding: 5px;
 	padding-top: 10px;
-	background-color: hsla(0, 0%, 100%, 0.85);
+	background-color: rgba(255, 255, 255, 0.85);
 }
 
 .button-sort {
@@ -109,7 +109,8 @@ body {
 	background-color: hsla(0, 0%, 100%, 0.85);
 }
 .data {
-	width: 75%;
+	width: 60%;
+	/* overflow: hidden; */
 	border-radius: 5px;
 	border: solid 1px;
 	padding: 20px;

@@ -4,6 +4,21 @@ const allCards = document.querySelector('.all-cards');
 const selectMovies = document.querySelector('.select-movies');
 const selectSort = document.querySelector('.sort');
 const sortResult = document.querySelector('.sort-result');
+const input = document.querySelector('.input');
+const searchBtn = document.querySelector('.button-search');
+
+const resetSortBlock = () => {
+	selectSort.value = 'Sort';
+	sortResult.style.display = 'none';
+	input.setAttribute('disabled', '');
+	searchBtn.setAttribute('disabled', '');
+	input.value = '';
+};
+
+const enableSortBlock = () => {
+	input.removeAttribute('disabled');
+	searchBtn.removeAttribute('disabled');
+};
 
 const getSortData = (movie, sort) => {
 	fetch('dbHeroes.json')
@@ -51,6 +66,7 @@ const getRenderData = (movie = 'All Movies', sort = 'Sort', value = 'unknown') =
 			}
 			let sortedArray = [];
 			if (sort !== 'Sort') {
+				// Для каждого элемента массива value при совпадении запушить в sortArray
 				sortedArray = array.filter((item) => item[sort] === value);
 			} else {
 				sortedArray = array;
@@ -67,8 +83,17 @@ const renderSortButtons = (array) => {
 		buttonSort.textContent = `${item}`;
 
 		buttonSort.addEventListener('click', (e) => {
-			console.log(e.target);
 			getRenderData(selectMovies.value, selectSort.value, e.target.textContent);
+		});
+
+		buttonSort.addEventListener('mouseenter', (event) => {
+			event.target.style.backgroundColor = 'rgba(250, 250, 250, 0.97)';
+			event.target.style.border = 'solid 2px';
+		});
+
+		buttonSort.addEventListener('mouseleave', (event) => {
+			event.target.style.backgroundColor = 'rgba(255, 255, 255, 0.85)';
+			event.target.style.border = 'solid 1px';
 		});
 
 		sortResult.append(buttonSort);
@@ -113,13 +138,12 @@ const renderCards = (array) => {
 
 const start = () => {
 	getRenderData();
-	sortResult.style.display = 'none';
+	resetSortBlock();
 };
 
 selectMovies.addEventListener('change', () => {
 	getRenderData(selectMovies.value);
-	selectSort.value = 'Sort';
-	sortResult.style.display = 'none';
+	resetSortBlock();
 });
 
 selectSort.addEventListener('change', () => {
@@ -127,10 +151,49 @@ selectSort.addEventListener('change', () => {
 		sortResult.style.display = 'block';
 		getSortData(selectMovies.value, selectSort.value);
 		getRenderData(selectMovies.value);
+		enableSortBlock();
 	} else {
-		sortResult.style.display = 'none';
+		resetSortBlock();
 		getRenderData(selectMovies.value);
 	}
 });
+
+input.addEventListener('input', (e) => {
+	e.target.value = e.target.value.replace(/[^a-zA-Z ]/, '');
+	const sortBtns = document.querySelectorAll('.button-sort');
+	if (e.value !== '') {
+		sortBtns.forEach((item) => {
+			if (item.textContent.toLowerCase().includes(input.value.toLowerCase())) {
+				item.style.display = 'inline';
+			} else {
+				item.style.display = 'none';
+			}
+		});
+	} else {
+		sortBtns.forEach((item) => (item.style.display = 'inline'));
+	}
+});
+
+searchBtn.addEventListener('click', () => {
+	const sortBtns = document.querySelectorAll('.button-sort');
+	let array = [];
+	sortBtns.forEach((item) => {
+		if (item.style.display !== 'none') {
+			array.push(item.textContent);
+		}
+	});
+	console.log('~ array', array);
+});
+
+[selectMovies, selectSort, input, searchBtn].forEach((item) =>
+	item.addEventListener('mouseenter', (event) => {
+		event.target.style.backgroundColor = 'rgba(255, 255, 255, 0.97)';
+	})
+);
+[selectMovies, selectSort, input, searchBtn].forEach((item) =>
+	item.addEventListener('mouseleave', (event) => {
+		event.target.style.backgroundColor = 'rgba(255, 255, 255, 0.85)';
+	})
+);
 
 start();
