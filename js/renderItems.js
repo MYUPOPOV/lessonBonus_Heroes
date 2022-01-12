@@ -86,21 +86,17 @@ const renderSortButtons = (array) => {
 		const buttonSort = document.createElement('button');
 		buttonSort.classList.add('button-sort');
 		buttonSort.textContent = `${item}`;
-
 		buttonSort.addEventListener('click', (e) => {
 			getRenderData(selectMovies.value, selectSort.value, [e.target.textContent]);
 		});
-
 		buttonSort.addEventListener('mouseenter', (event) => {
 			event.target.style.backgroundColor = 'rgba(250, 250, 250, 0.97)';
 			event.target.style.border = 'solid 3px';
 		});
-
 		buttonSort.addEventListener('mouseleave', (event) => {
 			event.target.style.backgroundColor = 'rgba(255, 255, 255, 0.85)';
 			event.target.style.border = 'solid 1px';
 		});
-
 		sortResult.append(buttonSort);
 	});
 };
@@ -181,13 +177,12 @@ input.addEventListener('input', (e) => {
 
 searchBtn.addEventListener('click', () => {
 	const sortBtns = document.querySelectorAll('.button-sort');
-	let array = [];
+	const array = [];
 	sortBtns.forEach((item) => {
 		if (item.style.display !== 'none') {
 			array.push(item.textContent);
 		}
 	});
-	console.log('~ array', array);
 	getRenderData(selectMovies.value, selectSort.value, array);
 });
 
